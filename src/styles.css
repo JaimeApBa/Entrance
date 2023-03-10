@@ -1,0 +1,544 @@
+/******************** Generic styles ********************/
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --color-primary: hsl(152, 50%, 90%);
+  --color-secondary: hsl(223, 73%, 35%);
+  --color-secondary-ligth: hsl(204, 29%, 59%);
+  --color-button-green-dark: hsl(133, 100%, 37%);
+  --color-button-green-medium: hsl(133, 100%, 42%);
+  --color-white: hsl(0, 0%, 100%);
+  --color-grey: hsl(0, 0%, 85%);
+  --color-error: hsl(0, 100%, 50%);
+  --color-vacation: hsl(33, 100%, 95%);
+  --color-sick: hsl(29, 80%, 67%);
+  --color-justified-days: hsl(306, 71%, 70%);
+  --color-bank-holidays: hsl(205, 44%, 89%);
+  --margin-30: 30px;
+}
+
+html, body{
+  margin: 0;
+  font-size: 20px;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  color: var(--color-secondary);
+}
+
+.flex-center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li{
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: var(--color-secondary);
+}
+.mb-30 {
+  margin-bottom: var(--margin-30);
+}
+.mb-75 {
+  margin-bottom: 75px;
+}
+
+/******************** Pages ********************/
+
+/* Auth Login - Register */
+.headerAuth {
+  display: flex;
+  justify-content: center;
+  margin-top: 75px;
+  margin-bottom: 75px;
+}
+
+.auth-container {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+
+}
+
+.field {
+  background-color: var(--color-primary);
+  height: 110px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-field {
+  display: flex;
+  align-items: center;
+  width: 80%;
+  height: 40px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--color-secondary);
+  background-color: transparent;
+  border-bottom: 2px solid var(--color-secondary);
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+.input-field:focus {
+  outline: none;
+}
+.bt-container {
+  text-align: center;
+}
+.bt {
+  width: 150px;
+  height: 50px;
+  border: 2px solid var(--color-button-green-dark);
+  background-color: var(--color-button-green-medium);
+  border-radius: 25px;
+  color: var(--color-white);
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.errorMessage {
+  color: var(--color-error);
+  line-height: 75px;
+  font-size: 14px;
+  text-align: center;
+  margin: 0;
+}
+.error {
+  border-color: var(--color-error);
+  color: var(--color-error);
+}
+
+/* Entrance Dashboard */
+
+.dayCalendar {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+}
+.today {
+  height: 75px;
+  background-color: var(--color-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+.bar-day-calendar {
+  width: 90%;
+  margin: 50px auto;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  text-align: center;
+}
+
+.bar-day {
+  height: 75px;
+  background-color: var(--color-vacation);
+  border: 2px solid var(--color-secondary);
+}
+.bar-checkIn-hours {
+  width: 50px;
+  height: 75px;
+  background-color: var(--color-bank-holidays);
+  color: var(--color-secondary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.time-data {
+  border: 2px solid var(--color-secondary);
+  border-radius: 10px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+
+}
+.total-hours {
+  color: var(--color-secondary);
+  margin: 0;
+  text-align: left;
+  margin: 10px 0 ;
+  padding-left: 10px;
+}
+.total-hours span {
+  width: 50%;
+  display: inline-block;
+}
+
+/* Historic Page */
+
+.totalTimeByYear,
+.totalTimeByMonth,
+.totalTimeByDays {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  gap: 10px;
+}
+.totalTimeByYear,
+.totalTimeByDays{
+  margin: 30px; 
+}
+.totalTimeByMonth{
+  background-color: var(--color-primary);
+  padding: 30px;
+}
+.totalTimeByMonth > * {
+  background-color: var(--color-white);
+}
+.totalTime {
+  border: 2px solid var(--color-secondary);
+  min-height: 40px;
+  width: 50%;
+  flex-grow: 1;
+  margin: 0 auto;
+}
+.differenceTime {
+  border: 2px solid var(--color-secondary);
+  width: 100px;
+  min-height: 40px;
+  flex-grow: 1;
+  margin: 0 auto;
+}
+
+/* Calendar Page */
+
+.user-holidays {
+  flex-flow: row wrap;
+  justify-content: space-around;
+  padding: 35px 0;
+}
+.total-holidays,
+.left-holidays {
+  width: 100%;
+  flex-flow: row wrap;
+}
+.data-box{
+  width: 60px;
+  height: 60px;
+  margin: 0;
+}
+.total-holidays .data-box {
+  background-color: var(--color-grey);
+}
+.left-holidays  .data-box {
+  background-color: var(--color-vacation);
+}
+.textData {
+  text-align: center;
+  width: 235px;
+}
+
+.bt-holidaysWrap {
+  height: 75px;
+  background-color: var(--color-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+.bt-holidays {
+  height: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: transparent;
+  border: 2px solid var(--color-button-green-dark);
+  border-radius: 30px;
+  color: var(--color-button-green-dark);
+  font-size: 20px;
+  cursor: pointer;
+}
+.bt-holidays:hover {
+  opacity: 0.5;
+}
+
+.calendar {
+  padding: 30px;
+}
+
+/******************** Components ********************/
+
+/* Header */
+.headerDashboard{
+  margin: 30px 0;
+  text-align: center;
+}
+
+
+/* Navbar */
+
+nav {
+  height: auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.navList-1,
+.navList-2 {
+  width: 100%;
+}
+.bt-check-in {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 15px;
+  border-radius: 0;
+}
+.navLink{
+  text-align: center;
+  background-color: var(--color-primary);
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+}
+
+.notification {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  vertical-align: middle;
+  line-height: 27px;
+  position: relative;
+  left: 10px;
+}
+
+.vacation {
+  background-color: var(--color-vacation);
+}
+
+.incident {
+  background-color: var(--color-error);
+}
+
+/* User Section */
+.data-user-organization {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  padding: 35px 0;
+}
+
+.user-section {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo {
+  width: 120px;
+}
+
+/* CounterDate */
+.counterWrap {
+  border: 1px solid var(--color-secondary);
+  display: flex;
+  flex-flow: row nowrap;
+  flex: 1 0 auto;
+
+}
+.counter {
+  min-width: 20px;
+  text-align: center;
+  background-color: var(--color-secondary-ligth);
+  cursor: pointer;
+  flex: 0.3 1 20px;
+}
+.counterData {
+  width: 125px;
+  height: 40px;
+  flex: 0.4 1 70%;
+}
+
+.decrement {
+  border-right: 1px solid var(--color-secondary);
+}
+.increment {
+  border-left: 1px solid var(--color-secondary);
+}
+
+/* TotalTimeBar*/
+.m-0 {
+  margin: 0 auto;
+  border: none !important;
+}
+.v-align {
+  display: flex;
+  align-items: center;
+}
+
+/* Holydays Calendar */
+.legend {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px;
+  gap: 5px;
+}
+
+.legend-block {
+  height: 50px;
+  margin: 0;
+  flex: 1 1 175px;
+}
+
+.bank-holidays{
+  background-color: var(--color-bank-holidays);
+}
+.fault {
+  background-color: var(--color-sick);
+}
+.justified-fault {
+  background-color: var(--color-justified-days);
+}
+.not-justified-fault {
+  background-color: var(--color-error);
+}
+.holidays {
+  background-color: var(--color-vacation);
+  flex-grow: 1;
+}
+
+
+/******************** Calendar ********************/
+
+.calendarWrap {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  width: 100%;
+  gap: var(--margin-30);
+}
+
+.calendar-month {
+  border: 2px solid var(--color-secondary);
+  width: 300px;
+  display: inline-block;
+  text-align: center;
+  box-sizing:border-box;
+}
+.month-name {
+  margin: 5px 0;
+}
+.weekdays {
+  display: inline-block;
+  width: 100%;
+  font-size: 16px;
+  background-color: var(--color-grey);
+}
+.weekdays li,
+.calendar-week li {
+  float: left;
+  width: calc(100% / 7);
+  margin: 5px 0;
+}
+.calendar-week {
+  font-size: 16px;
+}
+
+
+/* Footer */
+footer {
+  height: 100%;
+  width: 100%;
+  background-color: var(--color-secondary-ligth);
+  color: var(--color-white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1 0 auto;
+}
+
+
+@media screen and (min-width: 750px) {
+
+  /************** Pages **************/
+  
+  /* Calendar Page */
+  .textData {
+    text-align: left;
+    padding-left: 15px;
+  }
+  .total-holidays,
+  .left-holidays {
+    width: 50%;
+  }
+  
+  /************** Holidays Calendar **************/
+
+  .legend-block {
+    max-width: 175px;
+  }
+
+
+  /************** Components **************/
+  /* Navbar */
+
+  nav {
+    height: 50px;
+    background-color: var(--color-primary);
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .navList-1,
+  .navList-2 {
+    height: 50px;
+    width: 40%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .bt-home {
+    margin-bottom: 0 !important;
+    margin-top: 5px;
+    height: 0;
+  }
+  .navLink{
+    margin-bottom: 0 !important;
+  }
+  
+ .navList-1 {
+  order: 1;
+ }
+ .navList-2 {
+  order: 3;
+ }
+
+  .bt-check-in {
+    width: 100%;
+    margin-bottom: 15px;
+    border-radius: 25px !important;
+    width: 150px !important;
+    order: 2;
+  }
+
+
+}
+
+
+
