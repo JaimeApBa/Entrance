@@ -12,3 +12,4 @@ export * from './DifferenceTime';
 export * from './UserHolidaysSection';
 export * from './LegendCalendar';
 export * from './Calendar';
+export * from './CheckingAuth';

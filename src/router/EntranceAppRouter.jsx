@@ -1,16 +1,25 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import { LoginPage, RegisterPage } from '../auth/pages';
-import { CalendarPage, EntranceDashboard, HistoricPage, IncidentsPage } from '../entrance';
+import { AuthRoutes } from "../auth";
+import { EntranceRoutes } from '../entrance';
+import { useAuthLogin } from "../hooks";
+
 
 export const EntranceAppRouter = () => {
+
+  const { status } = useAuthLogin();
+    // if(status === 'checking') {
+    //     return <CheckingAuth />
+    // }
+
+    
   return (
     <Routes>
-        <Route path="/auth/login" element={ <LoginPage /> } />
-        <Route path="/auth/register" element={ <RegisterPage /> } />
-        <Route path="/" element={ <EntranceDashboard /> } />
-        <Route path="/historic" element={ <HistoricPage /> } />
-        <Route path="/calendar" element={ <CalendarPage /> } />
-        <Route path="/incidents" element={ <IncidentsPage /> } />
+      {
+        ( status === 'authenticated' )
+        ? <Route path="/*" element={ <EntranceRoutes/> } />
+        : <Route path="/auth/*" element={ <AuthRoutes /> } />
+      }
+         
         <Route path="*" element={ <Navigate to="/auth/login" /> } />
     </Routes>
   )

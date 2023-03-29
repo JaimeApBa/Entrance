@@ -1,5 +1,7 @@
 import { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 import { Logo } from "../../components";
+import { useAuthLogin } from "../../hooks";
 import { useForm } from "../../hooks/useForm";
 import { AuthContext } from "../context";
 import { loginValidations } from "../validators";
@@ -11,21 +13,23 @@ const initialValues = {
 
 export const LoginPage = () => {
 
-  const [formSubmitted, setFormSubmitted] = useState(false)
+  const [formSubmitted, setFormSubmitted] = useState(false);
+
+  const { errorMessage } = useContext(AuthContext);
 
   const { formState, email, password, onInputChange,
           emailValid, passwordValid, isFormValid} = useForm(initialValues, loginValidations);
 
-  const { loginWithCredentials } = useContext(AuthContext)
-
-
+  const { startLogin } = useAuthLogin();
+  
   const onSubmit = (event) => {
     event.preventDefault();
 
     setFormSubmitted(true);
     if(!isFormValid) return;
-
-    loginWithCredentials(formState);
+    
+    startLogin(formState);
+    
   }
 
   return (
@@ -57,14 +61,25 @@ export const LoginPage = () => {
                   value={ password }
                   />
         </div>
+
         {
           (formSubmitted && !!passwordValid) 
               && (<p className="errorMessage">{ passwordValid }</p>)
         }
+
         <div className="bt-container">
           <button className="bt bt-login" onClick={ onSubmit }>Entrar</button>
         </div>
+
+        {
+          (formSubmitted && !!errorMessage) 
+              && (<p className="errorMessage">{ errorMessage }</p>)
+        }
       </form>
+      <section className="new-signup">
+        <p className="newCompany"><Link to='/auth/signup'>Dar de alta nueva compañía</Link></p>
+      </section>
+
     </>
   )
 }

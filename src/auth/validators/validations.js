@@ -7,7 +7,7 @@ export const loginValidations = {
 
 
 export const registerValidations = {
-  company: [(value) => value.length >= 2, 'El nombre de la compañía es obligatoria'],
+  companyName: [(value) => value.length >= 2, 'El nombre de la compañía es obligatoria'],
   email: [(value) => regex.test(value), 'El correo electronico no es válido'],
   password: [(value) => value.length >= 6, 'La contraseña ha de tener almenos 6 carácteres'],
 }

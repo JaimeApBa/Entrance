@@ -1,20 +1,46 @@
+import { useContext, useEffect } from "react";
 import { Footer, Header, Navbar, UsersSection } from "../../components";
+import { EntranceContext } from "../context";
 
 import { months } from '../../dataCalendar';
-import user from '../../assets/user.jpg';
+import no_user from '../../assets/user.jpg';
 import noImage from '../../assets/no-image.jpg';
+import { useDataCompany, useDataUser } from "../../hooks";
 
 export const EntranceDashboard = () => {
     const time = new Date();
-    const today = time.getDate() + ' ' + months[time.getMonth()] + ' '  + time.getFullYear()
+    const today = time.getDate() + ' ' + months[time.getMonth()] + ' '  + time.getFullYear();
+
+    const { dataUser } = useDataUser();
+    const { dataCompany } = useDataCompany();
+    
+    useEffect(() => {
+      dataUser();
+      
+    }, []);
+    
+    const { user } = useContext(EntranceContext);
+    const { companyName, name, lastname, photo } = user || {};
+    useEffect(() => {
+      
+      dataCompany( companyName );
+    }, [companyName])
+    
     
     return (
       <div className="container">
         <Header />
         <Navbar />
         <section className="data-user-organization">
-          <UsersSection name="Nombre Usuario" logo={ user } />
-          <UsersSection name="Organización" logo={ noImage }/>
+          {
+            ( user ) &&
+              (
+                <>
+                  <UsersSection name={ `${ name } ${ lastname }`} logo={ photo || no_user } />
+                  <UsersSection name={ companyName } logo={ noImage }/>
+                </>
+              )
+          }
         </section>
         <section className="dayCalendar">
           <p className="today">{ today }</p>

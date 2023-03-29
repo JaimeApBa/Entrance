@@ -1,6 +1,7 @@
 /******************** Generic styles ********************/
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --color-logo: hsl(1, 61%, 68%);
   --color-primary: hsl(152, 50%, 90%);
   --color-secondary: hsl(223, 73%, 35%);
   --color-secondary-ligth: hsl(204, 29%, 59%);
@@ -119,6 +120,20 @@ a {
 .error {
   border-color: var(--color-error);
   color: var(--color-error);
+}
+
+.new-signup,
+.back-to-login {
+ margin-top: 100px;
+}
+.newCompany,
+.init {
+  font-size: 14px;
+  text-align: center;
+}
+.newCompany a,
+.init a{
+  color: var(--color-logo);
 }
 
 /* Entrance Dashboard */
@@ -309,6 +324,7 @@ nav {
   align-items: center;
   justify-content: center;
   height: 50px;
+  cursor: pointer;
 }
 
 .notification {

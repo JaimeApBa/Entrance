@@ -1,24 +1,26 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Logo } from "../../components";
+import { useAuthRegister } from "../../hooks";
 import { useForm } from "../../hooks/useForm";
-import { AuthContext } from "../context";
 import { registerValidations } from "../validators";
+
 
 
 const initialValues = {
   email: '',
-  company: '',
+  companyName: '',
   password: ''
 }
 
 export const RegisterPage = () => {
 
-  const [formSubmitted, setFormSubmitted] = useState(false)
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
-  const { formState, email,company, password, onInputChange,
+  const { formState, email, companyName, password, onInputChange,
           emailValid, companyValid ,passwordValid, isFormValid} = useForm(initialValues, registerValidations);
 
-  const { registerWithCredentials } = useContext(AuthContext)
+  const { startRegister } = useAuthRegister();
 
 
   const onSubmit = (event) => {
@@ -26,10 +28,9 @@ export const RegisterPage = () => {
 
     setFormSubmitted(true);
     if(!isFormValid) return;
-
-    registerWithCredentials(formState);
+    
+    startRegister(formState);
   }
-
 
   return (
     <>
@@ -57,8 +58,8 @@ export const RegisterPage = () => {
                     className={ (formSubmitted && !!companyValid) ? "input-field error" : "input-field" }
                     placeholder="Compañía"
                     onChange={ onInputChange }
-                    name="company"
-                    value={ company }
+                    name="companyName"
+                    value={ companyName }
                     />
           </div>
           {
@@ -82,7 +83,12 @@ export const RegisterPage = () => {
           <div className="bt-container">
             <button className="bt bt-register" onClick={ onSubmit }>Enviar</button>
           </div>
+
       </form>
+      
+      <section className="back-to-login">
+        <p className="init"><Link to='/auth/login'>Volver a inicio</Link></p>
+      </section>
     </>
   )
 }

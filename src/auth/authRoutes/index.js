@@ -1,3 +1,3 @@
 
 
-export * from './authRoutes';
+export * from './AuthRoutes';

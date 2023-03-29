@@ -3,30 +3,57 @@ import { AuthContext, authReducer, types } from "./";
 
 const initValues = {
     status: 'checking',
-    email: null,
-    password: null,
-    company: null
+    c_id: null,
+    message: null,
+    errorMessage: null,
+    user: null
 }
 
 export const AuthProvider = ({ children }) => {
 
     const [AuthState, dispatch] = useReducer(authReducer, initValues);
 
-
-    const loginWithCredentials = async ({ email, password }) => {
+    const onChecking = async () => {
         const action = {
-            type: types.login,
+            type: types.checkingCredentials
         }
         dispatch(action);
     }
 
-    const registerWithCredentials = ({ email, password, company }) => {
+    const loginWithCredentials = async ( uid, isAdmin, email, company ) => {
         
         const action = {
-            type: types.register,
+            type: types.login,
+            payload: {
+                uid, isAdmin, email, company
+            }
         }
         dispatch(action);
     }
+
+    const registerWithCredentials = ( uid, email, company, isAdmin ) => {
+       
+        const action = {
+            type: types.register,
+            payload: {
+                uid,
+                email,
+                company,
+                isAdmin
+            }
+        }
+        dispatch(action);
+    }
+
+    const errorLogin = ( msg ) => {
+        
+        const action = {
+            type: types.errorLogin,
+            payload: msg
+        }
+        dispatch(action);
+    }
+
     const logout = () => {
         const action = {
             type: types.logout,
@@ -38,9 +65,11 @@ export const AuthProvider = ({ children }) => {
         <AuthContext.Provider 
             value={{
                 ...AuthState,
+                onChecking,
                 loginWithCredentials,
                 registerWithCredentials,
-                logout
+                logout,
+                errorLogin
            } }
         >
             { children }
