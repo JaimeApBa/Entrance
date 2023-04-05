@@ -20,6 +20,20 @@ export const entranceReducer = ( state, action ) => {
                 company: payload
             }
     
+        case entranceTypes.usersCompany:
+            
+            return {
+                ...state,
+                totalUsers: payload
+            }
+
+        case entranceTypes.dataCalendar:
+            
+            return {
+                ...state,
+                dataCalendar: payload
+            }
+    
         default:
             return state;
     }

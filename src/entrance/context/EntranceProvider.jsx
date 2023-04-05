@@ -31,12 +31,32 @@ export const EntranceProvider = ( { children } ) => {
         dispatch(action);
     }
 
+    const setUsersCompany = ( users ) => {
+        
+        const action = {
+            type: entranceTypes.usersCompany,
+            payload: users
+        }
+        dispatch(action);
+    }
+
+    const setDataCalendarCompany = ( dataCalendar ) => {
+        
+        const action = {
+            type: entranceTypes.dataCalendar,
+            payload: dataCalendar
+        }
+        dispatch(action);
+    }
+
     return (
         <EntranceContext.Provider 
             value={{
                 ...entranceState,
                 setDataUser,
-                setDataCompany
+                setDataCompany,
+                setUsersCompany,
+                setDataCalendarCompany
             }}>
             { children }
         </EntranceContext.Provider>

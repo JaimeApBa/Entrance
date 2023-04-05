@@ -1,4 +1,5 @@
-import logo from '../assets/Logo_Entrance.png'
+import logo from '../../assets/Logo_Entrance.png';
+
 export const Logo = () => {
   return (
     <>

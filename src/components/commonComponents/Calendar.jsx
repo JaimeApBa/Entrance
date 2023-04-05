@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { months, weekDays } from "../dataCalendar";
-import { useCalendar } from "../hooks";
+import { months, weekDays } from "../../dataCalendar";
+import { useCalendar } from "../../hooks";
 
 export const Calendar = () => {
     const date = new Date();

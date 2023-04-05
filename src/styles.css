@@ -8,6 +8,7 @@
   --color-button-green-dark: hsl(133, 100%, 37%);
   --color-button-green-medium: hsl(133, 100%, 42%);
   --color-white: hsl(0, 0%, 100%);
+  --color-dialog: hsl(50, 75%, 97%);
   --color-grey: hsl(0, 0%, 85%);
   --color-error: hsl(0, 100%, 50%);
   --color-vacation: hsl(33, 100%, 95%);
@@ -51,6 +52,20 @@ a {
 }
 .mb-75 {
   margin-bottom: 75px;
+}
+
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  appearance: textfield;
+  -moz-appearance: textfield;
 }
 
 /******************** Pages ********************/
@@ -288,6 +303,7 @@ a {
   padding: 30px;
 }
 
+
 /******************** Components ********************/
 
 /* Header */
@@ -473,6 +489,195 @@ nav {
   font-size: 16px;
 }
 
+/******************** Company Section ********************/
+.company-section {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: 15px;
+  justify-content: center;
+  padding: 35px;
+}
+
+figcaption {
+  font-size: 12px;
+  text-align: center;
+  cursor: pointer;
+}
+.company-name {
+  margin-top: -12px;
+  cursor: pointer;
+}
+.company-name:hover {
+  transform: scale(1.2);
+}
+.detailsContainer {
+  position: absolute;
+  width: max-content;
+}
+.close-dialog{
+  text-align: center;
+  padding-right: 10px;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  position: relative;
+  left: calc(100% - 20px);
+}
+.close-dialog:hover {
+  font-weight: bold;
+}
+.details {
+  font-size: 12px;
+  background-color: hsl(51, 96%, 80%);
+  width: 100%;
+  border-radius: 10px;
+  position: relative;
+  left: 60%;
+  top: 50px;
+}
+.address-details {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  padding-bottom: 10px;
+}
+.address,
+.no-address {
+  width: 80%;
+  padding: 0 10px 0 20px;
+  margin-bottom: 5px;
+}
+.address {
+  margin-top: -12px;
+  opacity: 0.7;
+  font-weight: bold;
+}
+.no-address {
+  margin-top: -5px;
+}
+.arrow {
+  width: 0; 
+  height: 0; 
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent; 
+  border-bottom: 10px solid hsl(51, 96%, 80%);
+  border-top: none;
+  position: relative;
+  left: calc(100% / 2 - 5px);
+  top: -30px;
+}
+.address span {
+  display: block;
+  width: 20%;
+  height: auto;
+}
+.icon-pencil {
+  padding-right: 10px;
+  padding-left: 10px;
+  cursor: pointer;
+}
+
+.swal-container {
+  background-color: hsl(51, 96%, 80%);
+  color: var(--color-secondary);
+  font-size: 16px;
+}
+.swal-container input {
+  width: 80%;
+  height: 40px;
+  font-size: 16px;
+  margin-bottom: 15px;
+  background-color: hsl(52, 100%, 89%);
+  margin-top: 5px;
+}
+
+/******************** Company Section ********************/
+.container-company-data{
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: 15px;
+  justify-content: center;
+  padding: 0 35px 35px;
+}
+
+.company-data{
+  border: 2px solid var(--color-secondary);
+  width: 100%;
+  border-radius: 10px;
+  display: flex;
+  flex-flow: row wrap;
+  gap: 20px
+}
+.company-data li {
+  width: 100%;
+  padding-left: 20px;
+}
+
+/******************** Calendar Company ********************/
+
+.annualWorkingHours, 
+.totalDaysOfHolidays,
+.weeklyWorkingHours {
+  border: none;
+  margin-left: 5px;
+  width: 80px;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  color: var(--color-secondary);
+  font-size: 20px;
+  height: 21px;
+}
+
+.annualWorkingHours:focus,
+.totalDaysOfHolidays:focus,
+.weeklyWorkingHours:focus {
+  outline: none;
+}
+
+.icons {
+  width: 20px;
+  padding-left: 10px;
+  padding-right: 6px;
+}
+.icons img {
+  cursor: pointer;
+}
+
+/******************** Company Users ********************/
+
+.companyUsers {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 15px;
+  justify-content: space-between;
+  padding: 0 85px 35px 35px;
+}
+.newAdmin,
+.btnUser {
+  width: calc(50% - 15px);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  height: 120px;
+  cursor: pointer;
+}
+.newAdmin{
+  justify-content: center;
+  color: var(--color-error);
+  border: 2px solid var(--color-error);
+  text-align: center;
+  margin: 0;
+}
+.user-btn{
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.user-data {
+  width: fit-content;
+}
 
 /* Footer */
 footer {
@@ -484,6 +689,13 @@ footer {
   justify-content: center;
   align-items: center;
   flex: 1 0 auto;
+}
+
+
+@media screen and (max-width: 750px) {
+  .user-btn img {
+    display: none;
+  }
 }
 
 
@@ -500,6 +712,7 @@ footer {
   .left-holidays {
     width: 50%;
   }
+ 
   
   /************** Holidays Calendar **************/
 
@@ -552,6 +765,14 @@ footer {
     width: 150px !important;
     order: 2;
   }
+
+  /******************** Company Section ********************/
+
+
+.company-data li {
+  width: 45%;
+}
+
 
 
 }

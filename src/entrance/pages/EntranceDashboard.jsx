@@ -15,14 +15,13 @@ export const EntranceDashboard = () => {
     const { dataCompany } = useDataCompany();
     
     useEffect(() => {
-      dataUser();
-      
+      dataUser();  
     }, []);
     
     const { user } = useContext(EntranceContext);
     const { companyName, name, lastname, photo } = user || {};
-    useEffect(() => {
-      
+
+    useEffect(() => {  
       dataCompany( companyName );
     }, [companyName])
     
@@ -36,8 +35,8 @@ export const EntranceDashboard = () => {
             ( user ) &&
               (
                 <>
-                  <UsersSection name={ `${ name } ${ lastname }`} logo={ photo || no_user } />
-                  <UsersSection name={ companyName } logo={ noImage }/>
+                  <UsersSection name={ `${ name } ${ lastname }`} logo={ photo || no_user } linkTo = '/user' />
+                  <UsersSection name={ companyName } logo={ noImage } linkTo = '/company' />
                 </>
               )
           }
