@@ -10,3 +10,4 @@ export * from './TotalTimeBar';
 export * from './DifferenceTime';
 export * from './LegendCalendar';
 export * from './Calendar';
+export * from './BackHistory';

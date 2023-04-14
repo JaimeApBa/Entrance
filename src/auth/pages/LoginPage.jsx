@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { Logo } from "../../components";
 import { useAuthLogin } from "../../hooks";
-import { useForm } from "../../hooks/useForm";
+import { useForm } from "../../hooks/auth/useForm";
 import { AuthContext } from "../context";
 import { loginValidations } from "../validators";
 

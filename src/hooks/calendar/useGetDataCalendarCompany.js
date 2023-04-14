@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { EntranceContext } from "../entrance";
-import { entranceApi } from "../api";
+import { EntranceContext } from "../../entrance";
+import { entranceApi } from "../../api";
 import Swal from "sweetalert2";
 
 

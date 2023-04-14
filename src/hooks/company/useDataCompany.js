@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { entranceApi } from "../api";
-import { EntranceContext } from "../entrance";
+import { entranceApi } from "../../api";
+import { EntranceContext } from "../../entrance";
 import Swal from "sweetalert2";
 
 export const useDataCompany = () => {

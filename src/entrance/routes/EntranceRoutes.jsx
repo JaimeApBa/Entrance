@@ -1,13 +1,14 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { EntranceRouterContext } from "../";
 
-import { CalendarPage, CompanyPage, EntranceDashboard, HistoricPage, IncidentsPage } from '../pages';
+import { CalendarPage, CompanyPage, EntranceDashboard, HistoricPage, IncidentsPage, UserPage } from '../pages';
 
 export const EntranceRoutes = () => {
     return (
       <Routes>
           <Route element={ <EntranceRouterContext /> } >
             <Route path="/" element={ <EntranceDashboard /> } />
+            <Route path="/user/:id" element={ <UserPage /> } />
             <Route path="/company" element={ <CompanyPage /> } />
             <Route path="/historic" element={ <HistoricPage /> } />
             <Route path="/calendar" element={ <CalendarPage /> } />

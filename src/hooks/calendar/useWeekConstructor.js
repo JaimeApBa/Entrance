@@ -1,4 +1,4 @@
-import { weekDays } from "../dataCalendar";
+import { weekDays } from "../../dataCalendar";
 
 export const useWeekConstructor = (calendarWeek, dayOfWeek, numberOfDay) => {
         

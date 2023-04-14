@@ -10,6 +10,7 @@
   --color-white: hsl(0, 0%, 100%);
   --color-dialog: hsl(50, 75%, 97%);
   --color-grey: hsl(0, 0%, 85%);
+  --color-grey-dark: hsl(0, 1%, 65%);
   --color-error: hsl(0, 100%, 50%);
   --color-vacation: hsl(33, 100%, 95%);
   --color-sick: hsl(29, 80%, 67%);
@@ -66,6 +67,10 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   appearance: textfield;
   -moz-appearance: textfield;
+}
+
+.not-display{
+  display: none;
 }
 
 /******************** Pages ********************/
@@ -362,6 +367,18 @@ nav {
   background-color: var(--color-error);
 }
 
+/* BackHistory*/
+.history {
+  width: 80%;
+  margin-top: 20px;
+  margin-left: 10%;
+}
+.backHistory {
+  cursor: pointer;
+  text-align: center;
+  font-size: 16px;
+  color: var(--color-secondary-ligth);
+}
 /* User Section */
 .data-user-organization {
   display: flex;
@@ -453,7 +470,7 @@ nav {
 }
 
 
-/******************** Calendar ********************/
+/* Calendar */
 
 .calendarWrap {
   display: flex;
@@ -489,7 +506,7 @@ nav {
   font-size: 16px;
 }
 
-/******************** Company Section ********************/
+/* Company Section */
 .company-section {
   display: flex;
   flex-flow: row nowrap;
@@ -593,7 +610,7 @@ figcaption {
   margin-top: 5px;
 }
 
-/******************** Company Section ********************/
+/* Company Data */
 .container-company-data{
   display: flex;
   flex-flow: row nowrap;
@@ -616,7 +633,7 @@ figcaption {
   padding-left: 20px;
 }
 
-/******************** Calendar Company ********************/
+/* Calendar Company */
 
 .annualWorkingHours, 
 .totalDaysOfHolidays,
@@ -645,14 +662,21 @@ figcaption {
   cursor: pointer;
 }
 
-/******************** Company Users ********************/
+/* Company Users */
 
 .companyUsers {
+  padding: 0 85px 35px 35px;
+}
+.setionUsers{
+  width: 100%;
   display: flex;
   flex-flow: row wrap;
   gap: 15px;
   justify-content: space-between;
-  padding: 0 85px 35px 35px;
+  
+}
+.sectionAdmin{
+  margin-bottom: 15px;
 }
 .newAdmin,
 .btnUser {
@@ -663,12 +687,19 @@ figcaption {
   height: 120px;
   cursor: pointer;
 }
-.newAdmin{
+.newAdmin,
+.newUser{
   justify-content: center;
-  color: var(--color-error);
-  border: 2px solid var(--color-error);
   text-align: center;
   margin: 0;
+}
+.newAdmin {
+  color: var(--color-error);
+  border: 2px solid var(--color-error);
+}
+.newUser {
+  color: var(--color-button-green-medium);
+  border: 2px solid var(--color-button-green-medium);
 }
 .user-btn{
   flex-wrap: wrap;
@@ -677,6 +708,59 @@ figcaption {
 
 .user-data {
   width: fit-content;
+}
+
+/* User Card */
+
+.container-user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 35px 0;
+}
+.userCard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column nowrap;
+  border: 2px solid var(--color-secondary);
+  border-radius: 15px;
+  max-width: 500px;
+  width: 80%;
+  height: auto;
+ 
+}
+.card-header,
+.card-body {
+  width: 100%;
+  text-align: center;
+}
+.card-logo {
+  width: 50%;
+  height: auto;
+}
+.label-gray{
+  display: inline-block;
+  width: 100%;
+  color: var(--color-grey-dark);
+  background-color: var(--color-grey);
+  border-top: 1px solid var(--color-grey-dark);
+  border-bottom: 1px solid var(--color-grey-dark);
+}
+.card-text{
+  color: var(--color-secondary);
+  width: 90%;
+  font-size: 18px;
+  text-align: center;
+  height: 50px;
+  border: none;
+  margin-top: 3px;
+}
+.card-text:last-child {
+  margin-bottom: 3px;
+}
+.card-text:focus {
+  outline: none;
 }
 
 /* Footer */

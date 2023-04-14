@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { AuthContext } from "../auth";
-import { entranceApi } from "../api";
+import { AuthContext } from "../../auth";
+import { entranceApi } from "../../api";
 
 export const useAuthLogin = () => {
 
@@ -11,7 +11,7 @@ export const useAuthLogin = () => {
         onChecking();
         
         try {
-
+            
             const resp = await entranceApi.post( '/auth/login', { email, password } );
 
             const { uid, isAdmin, token, userEmail, company } = resp.data;

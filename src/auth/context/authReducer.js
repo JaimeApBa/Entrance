@@ -31,12 +31,12 @@ export const authReducer = (state, action) => {
                 c_id: payload.uid,
                 message: null
             }
-        // case types.dataUser:
+        case types.dataUser:
             
-        //     return {
-        //         ...state,
-        //         user: payload
-        //     }
+            return {
+                ...state,
+                user: payload
+            }
 
         case types.logout:
             

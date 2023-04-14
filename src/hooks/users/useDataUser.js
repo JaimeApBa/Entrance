@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import { entranceApi } from "../api";
-import { AuthContext } from "../auth";
-import { EntranceContext } from "../entrance";
+import { entranceApi } from "../../api";
+import { AuthContext } from "../../auth";
+import { EntranceContext } from "../../entrance";
 
 export const useDataUser = () => {
 

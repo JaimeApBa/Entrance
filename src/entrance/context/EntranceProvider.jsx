@@ -13,6 +13,8 @@ export const EntranceProvider = ( { children } ) => {
 
     const [entranceState, dispatch] = useReducer(entranceReducer, initValues);
 
+    /* User */
+
     const setDataUser = ( user ) => {
         
         const action = {
@@ -21,6 +23,8 @@ export const EntranceProvider = ( { children } ) => {
         }
         dispatch(action);
     }
+
+    /* Company */
 
     const setDataCompany = ( company ) => {
         
@@ -48,6 +52,8 @@ export const EntranceProvider = ( { children } ) => {
         }
         dispatch(action);
     }
+
+    /* calendar */
 
     return (
         <EntranceContext.Provider 

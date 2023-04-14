@@ -5,3 +5,4 @@ export * from './HistoricPage';
 export * from './CalendarPage';
 export * from './IncidentsPage';
 export * from './CompanyPage';
+export * from './UserPage';

@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { EntranceContext } from "../../entrance";
 import { useUpdateCompany } from "../../hooks";
+import { uploadImage } from "../../helpers";
 import noImage from '../../assets/no-image.jpg';
 import pencil from '../../assets/pencil.png';
 import Swal from "sweetalert2";
@@ -59,9 +60,6 @@ export const CompanySection = () => {
 
     }
 
-    /* TODO */
-    // Subir imagen
-
     
     return (
         <section className="company-section">
@@ -69,7 +67,7 @@ export const CompanySection = () => {
             <figure>
                 <img className="logo" src={ image || noImage } alt="Foto usuario" />
                 {
-                    ( isAdmin ) && <figcaption>Subir imagen</figcaption>
+                    ( isAdmin ) && <figcaption onClick={ uploadImage }>Subir imagen</figcaption>
                 }  
             </figure>
 
@@ -81,7 +79,7 @@ export const CompanySection = () => {
                     <div className="arrow"></div>
                     <div className="address-details">
                         {
-                            ( address )
+                            ( address && address.street )
                                 ? (<p className="address">
                                         { street }, { number }
                                         <br />

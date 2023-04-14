@@ -1,19 +1,19 @@
 import { useContext } from "react";
-import { AuthContext } from "../auth";
-import { entranceApi } from "../api";
+import { AuthContext } from "../../auth";
+import { entranceApi } from "../../api";
 import Swal from "sweetalert2";
 
 export const useAuthRegister= () => {
 
     const { onChecking, registerWithCredentials, errorLogin, company, email, status } = useContext(AuthContext);
     
-    const startRegister = async( { email, password, companyName } ) => {
+    const startRegister = async( { email, password, companyName, name, lastname, position } ) => {
         
         onChecking();
         
         try {
 
-            const resp = await entranceApi.post( '/auth/signup', { email, password, companyName, isAdmin: true } );
+            const resp = await entranceApi.post( '/auth/signup', { email, password, companyName, name, lastname, position } );
             
             const { uid, isAdmin, token, userEmail, company } = resp.data;
             

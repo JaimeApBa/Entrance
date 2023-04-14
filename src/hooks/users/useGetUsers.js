@@ -1,13 +1,13 @@
 import { useContext } from "react";
-import { entranceApi } from "../api";
-import { EntranceContext } from "../entrance";
+import { entranceApi } from "../../api";
+import { EntranceContext } from "../../entrance";
 import Swal from "sweetalert2";
 
 export const useGetUsers = () => {
     
     const { company, setUsersCompany } = useContext(EntranceContext);
     
-    const { name } = company;
+    const { name } = company || {};
     
     const getAllUsers = async () => {
 

@@ -1,7 +1,7 @@
-import { entranceApi } from "../api";
+import { entranceApi } from "../../api";
 import Swal from "sweetalert2";
-import { useContext, useEffect } from "react";
-import { EntranceContext } from "../entrance";
+import { useContext } from "react";
+import { EntranceContext } from "../../entrance";
 
 export const useUpdateCompany = () => {
 
@@ -26,8 +26,6 @@ export const useUpdateCompany = () => {
             console.log(error);
             const { msg } = error.response.data;
             
-            errorLogin({ errorMessage: msg });
-
             Swal.fire({
               icon: 'error',
               title: 'Oops...',

@@ -1,92 +1,95 @@
 import { useContext, useEffect, useState } from "react"
-import { useDataCalendarCompany, useGetDataCalendarCompany, useGetUsers } from "../../hooks"
+import { useGetDataCalendarCompany, useSetDataCalendarCompany, useUpdateDataCalendarCompany } from "../../hooks"
 import { EntranceContext } from "../../entrance";
 import save from '../../assets/check.png';
 import cancel from '../../assets/cancel.png';
 import pencil from '../../assets/pencil.png';
+import { cancelData, editData } from "../../helpers";
 
 export const CompanyData = () => {
     
     const { user, company, totalUsers, dataCalendar } = useContext(EntranceContext);
 
     const [edit, setEdit] = useState(false);
-    const [totalDaysOfHolidays, setTotalDaysOfHolidays] = useState('');
-    const [annualWorkingHours, setAnnualWorkingHours] = useState('');
-    const [weeklyWorkingHours, setWeeklyWorkingHours] = useState('');
     const [prevData, setPrevData] = useState({});
+    const [dataCompany, setDataCompany] = useState({
+        totalDaysOfHolidays: '',
+        annualWorkingHours: '',
+        weeklyWorkingHours: ''
+    })
 
-    const { _id } = company;
+    const { updateDataCalendarCompany } = useUpdateDataCalendarCompany();
 
-    const { getCalendarDataCompany } = useGetDataCalendarCompany();
-
-    const { dataCalendarCompany } = useDataCalendarCompany();
+    const { setNewDataCalendarCompany } = useSetDataCalendarCompany();
 
     const { isAdmin } = user;
 
-    useEffect(() => {
-        getCalendarDataCompany(_id);
-
-    }, []);
+    const inputs = document.querySelectorAll('input');
 
     useEffect(() => {
      if(dataCalendar) {
-            setAnnualWorkingHours(dataCalendar.annualWorkingHours);
-            setTotalDaysOfHolidays(dataCalendar.totalDaysOfHolidays);
-            setWeeklyWorkingHours(dataCalendar.weeklyWorkingHours);
+            setDataCompany(dataCalendar);
+            setPrevData(dataCalendar);
         }
     }, [dataCalendar]);
     
-
+    const handleChange = ({ target: { name, value }}) => {
+      
+        setDataCompany({
+          ...dataCompany,
+          [name]: value
+        })
+  
+      }
 
     const editDataCalendar = () => {
 
         setEdit(true);
 
-        const inputs = document.querySelectorAll('input');
-
-        inputs.forEach( input => {
-            input.readOnly = false;
-            input.style.background = 'hsl(0, 0%, 85%)';
-            input.style.borderBottom = '1px solid gray';
-
-            setPrevData( prev => ({
-                ...prev,
-                [input.name]: input.value
-            }))
-        });
+        editData(inputs);
 
     }
 
     const cancelEdit = () => {
 
-        const inputs = document.querySelectorAll('input');
-    
-        inputs.forEach( input => {
-            input.readOnly = true;
-            input.style.background = 'none';
-            input.style.borderBottom = 'none';
-            
-            if( input.name === "annualWorkingHours") setAnnualWorkingHours(prevData.annualWorkingHours);
-            if( input.name === "totalDaysOfHolidays") setTotalDaysOfHolidays(prevData.totalDaysOfHolidays);
-            if( input.name === "weeklyWorkingHours") setWeeklyWorkingHours(prevData.weeklyWorkingHours);
-        });
+        cancelData(inputs);
+
+        setDataCompany(prevData);
         
         setEdit(false);
     }
 
-    const onSubmit = () => {
-        const year = new Date().getFullYear();
-        
-        dataCalendarCompany({
-            companyId: _id,
-            year,
-            totalDaysOfHolidays,
-            annualWorkingHours,
-            weeklyWorkingHours,
-            bankHolidays: [],
-            workingHours: [],
+    const onSave = () => {
 
-        });
+        const year = new Date().getFullYear();
+
+        const { totalDaysOfHolidays, annualWorkingHours, weeklyWorkingHours } = dataCompany;
+
+        if (dataCalendar) {
+            
+            updateDataCalendarCompany({
+                companyId: _id,
+                year,
+                totalDaysOfHolidays,
+                annualWorkingHours,
+                weeklyWorkingHours,
+                bankHolidays: [],
+                workingHours: []
+            });
+
+        } else {
+
+            setNewDataCalendarCompany({
+                    companyId: _id,
+                    year,
+                    totalDaysOfHolidays,
+                    annualWorkingHours,
+                    weeklyWorkingHours,
+                    bankHolidays: [],
+                    workingHours: []
+            });
+        }
+        
 
         cancelEdit();
         
@@ -103,13 +106,13 @@ export const CompanyData = () => {
                 <li>Horas de trabajo anuales:
                     {
                         
-                        ( annualWorkingHours !== '' )
+                        ( dataCompany.annualWorkingHours !== '' )
                             ? ( <input type="number"
                                         min="0"
                                         name="annualWorkingHours"
                                         className="annualWorkingHours"
-                                        value={ annualWorkingHours }
-                                        onChange={ (e) => setAnnualWorkingHours(e.target.value) }
+                                        value={ dataCompany.annualWorkingHours }
+                                        onChange={ handleChange }
                                         readOnly
                                 />)
                             : ( <input  type="number" 
@@ -117,46 +120,46 @@ export const CompanyData = () => {
                                         className="annualWorkingHours"
                                         min="0"
                                         value={ "0" }
-                                        onChange={ (e) => setAnnualWorkingHours(e.target.value) }
+                                        onChange={ handleChange }
                                         readOnly
                                 />)
                     }
                 </li>
                 <li>Días de vacaciones anuales:
                     {
-                        ( totalDaysOfHolidays !== '' )
+                        ( dataCompany.totalDaysOfHolidays !== '' )
                             ? ( <input  type="number"
                                         min="0"
                                         name="totalDaysOfHolidays"
                                         className="totalDaysOfHolidays"
-                                        value={ totalDaysOfHolidays }
-                                        onChange={ (e) => setTotalDaysOfHolidays(e.target.value) }
+                                        value={ dataCompany.totalDaysOfHolidays }
+                                        onChange={ handleChange }
                                         readOnly />)
                             : ( <input  type="number"
                                         name="totalDaysOfHolidays"
                                         className="totalDaysOfHolidays"
                                         min="0"
                                         value={ "0" }
-                                        onChange={ (e) => setTotalDaysOfHolidays(e.target.value) }
+                                        onChange={ handleChange }
                                         readOnly />)
                     }
                 </li>
                 <li>Horas de trabajo semanal:
                     {
-                        ( weeklyWorkingHours !== '' )
+                        ( dataCompany.weeklyWorkingHours !== '' )
                             ? ( <input  type="number"
                                         min="0"
                                         name="weeklyWorkingHours"
                                         className="weeklyWorkingHours"
-                                        value={ weeklyWorkingHours }
-                                        onChange={ (e) => setWeeklyWorkingHours(e.target.value) }
+                                        value={ dataCompany.weeklyWorkingHours }
+                                        onChange={ handleChange }
                                         readOnly />)
                             : ( <input  type="number"
                                         className="weeklyWorkingHours"
                                         name="weeklyWorkingHours"
                                         min="0"
                                         value={ "0" }
-                                        onChange={ (e) => setWeeklyWorkingHours(e.target.value) }
+                                        onChange={ handleChange }
                                         readOnly />)
                     }
                 </li>
@@ -169,7 +172,7 @@ export const CompanyData = () => {
                 ( isAdmin && edit ) 
                     && ( 
                         <div className="icons">
-                            <img className="icon-save" src={ save } alt="icono de editar" width="15" onClick={ onSubmit }/>
+                            <img className="icon-save" src={ save } alt="icono de editar" width="15" onClick={ onSave }/>
                             <img className="icon-cancel" src={ cancel } alt="icono de editar" width="15" onClick={ cancelEdit }/>
                         </div>
                         )

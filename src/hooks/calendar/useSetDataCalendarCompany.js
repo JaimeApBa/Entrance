@@ -1,18 +1,18 @@
 import { useContext } from "react";
-import { EntranceContext } from "../entrance";
-import { entranceApi } from "../api";
+import { EntranceContext } from "../../entrance";
+import { entranceApi } from "../../api";
 import Swal from "sweetalert2";
 
-export const useDataCalendarCompany = () => {
+export const useSetDataCalendarCompany = () => {
 
     const { company, setDataCalendarCompany } = useContext(EntranceContext);
 
 
-    const dataCalendarCompany = async ( dataCalendar ) => {
+    const setNewDataCalendarCompany = async ( dataCalendar ) => {
         
         try {
 
-            const { data } = await entranceApi.put( '/calendar-company', { ...dataCalendar });
+            const { data } = await entranceApi.post( '/calendar-company', { ...dataCalendar });
             
             setDataCalendarCompany(data);
 
@@ -30,6 +30,6 @@ export const useDataCalendarCompany = () => {
     }
 
     return {
-        dataCalendarCompany
+        setNewDataCalendarCompany
     }
 }

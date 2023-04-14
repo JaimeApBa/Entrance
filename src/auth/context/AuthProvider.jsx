@@ -45,6 +45,15 @@ export const AuthProvider = ({ children }) => {
         dispatch(action);
     }
 
+    const updateAdmin = ( user ) => {
+        
+        const action = {
+            type: types.dataUser,
+            payload: user
+        }
+        dispatch(action);
+    }
+
     const errorLogin = ( msg ) => {
         
         const action = {
@@ -69,7 +78,8 @@ export const AuthProvider = ({ children }) => {
                 loginWithCredentials,
                 registerWithCredentials,
                 logout,
-                errorLogin
+                errorLogin,
+                updateAdmin
            } }
         >
             { children }

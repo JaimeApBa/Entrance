@@ -5,26 +5,40 @@ import { EntranceContext } from "../context";
 import { months } from '../../dataCalendar';
 import no_user from '../../assets/user.jpg';
 import noImage from '../../assets/no-image.jpg';
-import { useDataCompany, useDataUser } from "../../hooks";
+import { useDataCompany, useDataUser, useGetDataCalendarCompany, useGetUsers } from "../../hooks";
 
 export const EntranceDashboard = () => {
     const time = new Date();
     const today = time.getDate() + ' ' + months[time.getMonth()] + ' '  + time.getFullYear();
 
+    const { user, company, totalUsers, dataCalendar } = useContext(EntranceContext);
+
     const { dataUser } = useDataUser();
     const { dataCompany } = useDataCompany();
+    const { getAllUsers } = useGetUsers();
+    const { getCalendarDataCompany } = useGetDataCalendarCompany();
     
+    const { _id } = company || {};
+
     useEffect(() => {
       dataUser();  
     }, []);
     
-    const { user } = useContext(EntranceContext);
-    const { companyName, name, lastname, photo } = user || {};
+    useEffect(() => {
+      getAllUsers();
+    }, [totalUsers]);
+
+    useEffect(() => {
+      if(company) {
+        getCalendarDataCompany(_id);
+      }
+    }, [company]);
+    
+    const { _id:userId, companyName, name, lastname, photo } = user || {};
 
     useEffect(() => {  
       dataCompany( companyName );
-    }, [companyName])
-    
+    }, [companyName]);
     
     return (
       <div className="container">
@@ -35,7 +49,7 @@ export const EntranceDashboard = () => {
             ( user ) &&
               (
                 <>
-                  <UsersSection name={ `${ name } ${ lastname }`} logo={ photo || no_user } linkTo = '/user' />
+                  <UsersSection name={ `${ name } ${ lastname }`} logo={ photo || no_user } linkTo = { `/user/${userId}` } />
                   <UsersSection name={ companyName } logo={ noImage } linkTo = '/company' />
                 </>
               )
